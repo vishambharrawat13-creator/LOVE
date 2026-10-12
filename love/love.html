@@ -1,0 +1,184 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Message For You ❤️</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #ffb6cb, #ffe4ed, #ffc4d6);
+  color: #8c1744;
+  text-align: center;
+}
+
+.card {
+  width: 100%;
+  max-width: 430px;
+  padding: 28px 22px;
+  background: white;
+  border-radius: 25px;
+  box-shadow: 0 10px 35px #b5265b35;
+}
+
+.heart {
+  font-size: 65px;
+  animation: beat 1s infinite;
+}
+
+@keyframes beat {
+  50% { transform: scale(1.2); }
+}
+
+h1 {
+  color: #e52d70;
+}
+
+p {
+  line-height: 1.7;
+}
+
+button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 12px;
+  border: none;
+  border-radius: 14px;
+  background: #e52d70;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.85;
+}
+
+#letter {
+  display: none;
+  margin-top: 22px;
+  padding: 18px;
+  background: #fff0f5;
+  border-radius: 18px;
+}
+
+#answer {
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+#hearts {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.floating-heart {
+  position: absolute;
+  bottom: -30px;
+  animation: rise 4s linear forwards;
+}
+
+@keyframes rise {
+  to {
+    transform: translateY(-110vh) rotate(25deg);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+<div id="hearts"></div>
+
+<div class="card">
+  <div class="heart">💗</div>
+
+  <h1>Hey, Someone Special!</h1>
+
+  <p>
+    I have a little surprise for you.<br>
+    There's something I've wanted to tell you...
+  </p>
+
+  <button onclick="openLetter()">
+    Tap to Open Your Letter 💌
+  </button>
+
+  <div id="letter">
+    <h2>Something From My Heart ❤️</h2>
+
+    <p>
+      I don't know the perfect words to explain my feelings,
+      but talking to you always brings a smile to my face.
+      Somewhere along the way, you became someone special to me.
+    </p>
+
+    <p>
+      I wanted to tell you honestly that
+      <b>I really like you. 💖</b>
+    </p>
+
+    <h3>Would you like to give us a chance? 🌹</h3>
+
+    <button onclick="yesAnswer()">
+      Yes ❤️
+    </button>
+
+    <button onclick="thinkAnswer()">
+      I need some time 😊
+    </button>
+
+    <div id="answer"></div>
+  </div>
+</div>
+
+<script>
+function openLetter() {
+  document.getElementById("letter").style.display = "block";
+}
+
+function yesAnswer() {
+  document.getElementById("answer").innerHTML =
+    "Thank you for being honest with me! ❤️ Let's talk!";
+  showHearts();
+}
+
+function thinkAnswer() {
+  document.getElementById("answer").innerHTML =
+    "Of course! 😊 Take your time. No pressure at all.";
+}
+
+function showHearts() {
+  const area = document.getElementById("hearts");
+
+  for (let i = 0; i < 25; i++) {
+    const heart = document.createElement("span");
+
+    heart.innerHTML = "💖";
+    heart.className = "floating-heart";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (20 + Math.random() * 25) + "px";
+    heart.style.animationDelay = Math.random() * 2 + "s";
+
+    area.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 6500);
+  }
+}
+</script>
+</body>
+</html>
